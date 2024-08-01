@@ -1,0 +1,81 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# mypy
+.mypy_cache/
+
+# Pyre type checker
+.pyre/
+
+# Pytest
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# IDE/editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Data files
+*.csv
+*.dat
+*.json
+*.xlsx
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+
+# MacOS Finder
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Ignore all build artifacts
+*.o
+*.a
+*.out
+
+# Ignore specific files
+config.yml
+
+# Other files and folders
+trash/
+logs/
