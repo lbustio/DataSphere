@@ -1,3 +1,15 @@
+"""
+Base class for all plugins in the system.
+
+This module defines the BasePlugin class, which serves as a base class for all plugins in the system. 
+It provides common attributes and methods that all plugins can inherit and use.
+
+Author: Lázaro Bustio Martínez
+Date: 2024-08-01
+Version: 1.0
+Email: lbustio@gmail.com
+"""
+
 class BasePlugin:
     """
     Base class for all plugins.
@@ -6,6 +18,7 @@ class BasePlugin:
         description (str): Description of the plugin.
         version (str): Version of the plugin.
         author (str): Author of the plugin.
+        date (str): Date of the plugin.
         config (dict): Configuration dictionary of the plugin.
     """
     

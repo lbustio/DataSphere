@@ -12,19 +12,30 @@ import importlib.util
 
 class PluginManager:
     """
-    Manages loading, removing, and retrieving plugins.
+    Manages the loading, removal, and retrieval of plugins in the ClearData CLI.
 
     Attributes:
-        plugins (dict): A dictionary to store loaded plugin instances by name.
+        plugins (dict): A dictionary to store instances of loaded plugins by name.
+
+    Methods:
+        __init__(): Initializes the PluginManager with an empty dictionary of plugins.
+        load_plugin(plugin_type, plugin_name): Dynamically loads a plugin of a specific type and name.
+        remove_plugin(plugin_name): Removes a loaded plugin by its name.
+        get_plugin(plugin_name): Retrieves a loaded plugin instance by its name.
     """
 
     def __init__(self):
-        """Initializes the PluginManager with an empty dictionary of plugins."""
+        """
+        Initializes the PluginManager class.
+
+        Sets up an empty dictionary to store loaded plugins. This dictionary 
+        allows for efficient management and retrieval of plugin instances.
+        """
         self.plugins = {}
 
     def load_plugin(self, plugin_type, plugin_name):
         """
-        Loads a plugin of a specific type.
+        Dynamically loads a plugin of a specific type and name.
 
         Args:
             plugin_type (str): The type of the plugin (e.g., 'data_io').
@@ -33,7 +44,7 @@ class PluginManager:
         Raises:
             ModuleNotFoundError: If the plugin module cannot be found.
             AttributeError: If the plugin class cannot be found in the module.
-            Exception: For other unexpected errors during plugin loading.
+            Exception: For any other unexpected errors during plugin loading.
         """
 
         module_path = f"plugins.{plugin_type}.{plugin_name}"
@@ -42,7 +53,7 @@ class PluginManager:
             # Log the attempt to load the plugin
             logger.info(f"Attempting to load plugin '{plugin_name}' of type '{plugin_type}' from '{module_path}'.")
 
-            # Import the plugin module dynamically
+            # Dynamically import the plugin module
             spec = importlib.util.find_spec(module_path)
             if spec is None:
                 raise ModuleNotFoundError(f"Module '{module_path}' not found.")
@@ -57,21 +68,21 @@ class PluginManager:
             # Retrieve the plugin class from the module
             plugin_class = getattr(module, plugin_name)
 
-            # Create an instance of the plugin class and store it
+            # Instantiate the plugin class and store it
             current_plugin = plugin_class()
             self.plugins[plugin_name] = current_plugin 
             logger.info(f"Plugin '{plugin_name}' of type '{plugin_type}' loaded successfully.")
             
         except ModuleNotFoundError as e:
-            logger.error(f"Error loading the plugin '{plugin_name}' in type '{plugin_type}': {str(e)}")
+            logger.error(f"Error loading the plugin '{plugin_name}' of type '{plugin_type}': {str(e)}")
         except AttributeError as e:
-            logger.error(f"Error: Plugin class '{plugin_name.capitalize()}' not found in module '{plugin_name}'. Error loading plugin '{plugin_name}': {str(e)}")
+            logger.error(f"Error: Plugin class '{plugin_name}' not found in module '{plugin_name}'. Error loading plugin '{plugin_name}': {str(e)}")
         except Exception as e:
-            logger.error(f"Error loading plugin '{plugin_name}': {str(e)}")
+            logger.error(f"Unexpected error loading plugin '{plugin_name}': {str(e)}")
 
     def remove_plugin(self, plugin_name):
         """
-        Removes a loaded plugin.
+        Removes a loaded plugin by its name.
 
         Args:
             plugin_name (str): The name of the plugin to remove.
@@ -88,7 +99,7 @@ class PluginManager:
 
     def get_plugin(self, plugin_name):
         """
-        Retrieves a loaded plugin instance.
+        Retrieves a loaded plugin instance by its name.
 
         Args:
             plugin_name (str): The name of the plugin to retrieve.

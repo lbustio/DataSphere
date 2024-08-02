@@ -9,6 +9,7 @@ Email: lbustio@gmail.com
 """
 
 import sys
+import os
 from core.cli_parser import execute_commands, parse_arguments
 
 def main():
@@ -19,11 +20,17 @@ def main():
     """
     if len(sys.argv) == 1:
         # Default action if no command is provided
-        sys.argv.append('load_data=data\\raw\\sample.csv')
+        default_data_path = os.path.join('data', 'raw', 'sample.csv')
+        sys.argv.append(f'load_data={default_data_path}')
         sys.argv.append('visualize=table_viewer')
 
-    args = parse_arguments()
-    exit_code = execute_commands(args)
+    try:
+        args = parse_arguments()
+        exit_code = execute_commands(args)
+    except Exception as e:
+        print(f"An error occurred: {e}", file=sys.stderr)
+        exit_code = 1
+
     sys.exit(exit_code)
 
 if __name__ == '__main__':

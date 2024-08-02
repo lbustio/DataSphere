@@ -1,6 +1,11 @@
 """
 Module for parsing command-line arguments and executing commands in the DataSphere CLI.
 
+This module handles command-line interface (CLI) operations for the DataSphere application. 
+It parses user commands, loads data using plugins, visualizes data, performs analysis, 
+and saves results. It uses the PluginManager to manage plugins and relies on utility 
+functions for file validation and extension extraction.
+
 Author: Lázaro Bustio Martínez
 Date: 2024-08-01
 Version: 1.0
@@ -9,8 +14,8 @@ Email: lbustio@gmail.com
 
 import argparse
 import pandas as pd
-from core.plugin_manager import PluginManager
-from core.logging_config import logger
+from .plugin_manager import PluginManager
+from .logging_config import logger
 from utils.strings_utils import get_file_extension
 from utils.file_utils import validate_file_path
 
