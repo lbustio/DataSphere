@@ -106,7 +106,7 @@ By abstracting the data management and visualization tasks, DataSphere empowers 
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request with your proposed changes. Ensure to follow the project's coding standards and include tests for new features.
+DataSphere is a project currently under development, and as such, bugs and errors may occur. The author provides no warranties, and the software should be used at your own risk. Contributions are welcome! Please open an issue or submit a pull request with your proposed changes. Ensure that you adhere to the project's coding standards and include tests for any new features.
 
 ## License
 
