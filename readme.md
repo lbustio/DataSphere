@@ -1,5 +1,7 @@
 # DataSphere CLI
 
+![DataEther Logo](res/datasphere.jpg)
+
 DataSphere CLI is a command-line interface designed for managing and processing data through a modular plugin architecture. This tool enables users to efficiently load, visualize, analyze, and save data using a variety of extendable plugins.
 
 DataSphere is specifically crafted to support researchers and developers by simplifying the data handling process. It abstracts away the complexities of data management and visualization, allowing users to concentrate on refining and testing their algorithms. By streamlining these tasks, DataSphere reduces the overhead associated with orchestrating data workflows, enabling researchers to focus more on their core computational work and experimental analysis.
