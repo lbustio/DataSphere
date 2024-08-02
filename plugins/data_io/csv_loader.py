@@ -1,5 +1,5 @@
 import pandas as pd
-from utils.logging_config import logger
+from core.logging_config import logger
 from core.data_io_plugin import DataIOPlugin
 
 class csv_loader(DataIOPlugin):
@@ -39,16 +39,16 @@ class csv_loader(DataIOPlugin):
         try:
             # Load the CSV file into a DataFrame
             data = pd.read_csv(path, delimiter=self._config["delimiter"], header=0 if self._config["header"] else None)
-            logger.info(f"CSV file loaded successfully from {path}.")
+            logger.info(f"CSV file loaded successfully from '{path}'.")
             return data
         except FileNotFoundError as e:
-            logger.error(f"CSV file not found: {path}. The error message is: {e}")
+            logger.error(f"CSV file not found: '{path}'. The error message is: {e}")
             raise e
         except pd.errors.EmptyDataError as e:
-            logger.error(f"CSV file is empty: {path}. The error message is: {e}")
+            logger.error(f"CSV file is empty: '{path}'. The error message is: {e}")
             raise e
         except pd.errors.ParserError as e:
-            logger.error(f"Error parsing CSV file: {path}. The error message is: {e}")
+            logger.error(f"Error parsing CSV file: '{path}'. The error message is: {e}")
             raise
         except Exception as e:
             logger.error(f"An unexpected error occurred while loading CSV file: {e}")

@@ -1,5 +1,5 @@
 """
-Module for configuring the ClearData logger.
+Module for configuring the DataSphere logger.
 
 This module sets up a logger with colored output for the console and file logging.
 Log messages are formatted with color codes based on their level, and timestamps
@@ -14,8 +14,11 @@ Email: lbustio@gmail.com
 
 import logging
 import os
+import re
 from utils.constants import RESET, LIGHT_BLUE, WHITE, LOG_COLORS
 
+# Define color for magenta
+MAGENTA = '\033[35m'
 
 class ColoredFormatter(logging.Formatter):
     """
@@ -27,6 +30,9 @@ class ColoredFormatter(logging.Formatter):
         reset = RESET
 
         log_message = super().format(record)
+
+        # Highlight text within single quotes in magenta
+        log_message = re.sub(r"'(.*?)'", f"{MAGENTA}'\\1'{RESET}", log_message)
 
         try:
             parts = log_message.split(' - ')
@@ -60,12 +66,12 @@ def setup_logger():
     if not os.path.exists('logs'):
         os.makedirs('logs')
 
-    logger = logging.getLogger('ClearData')
+    logger = logging.getLogger('DataSphere')
     logger.setLevel(logging.DEBUG)
 
     try:
         # File handler for logging to a file
-        file_handler = logging.FileHandler('logs/clear_data.log')
+        file_handler = logging.FileHandler('logs/data_sphere.log')
         file_handler.setLevel(logging.DEBUG)
 
         # Console handler for colored output

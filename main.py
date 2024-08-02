@@ -8,32 +8,22 @@ Version: 1.0
 Email: lbustio@gmail.com
 """
 
-
 import sys
-import os
-from utils.logging_config import logger
-from utils.cli_parser import execute_command, parse_arguments
-from utils.file_utils import print_directory_structure, parse_gitignore
+from core.cli_parser import execute_commands, parse_arguments
 
 def main():
     """
     Main function to parse command-line arguments and execute the corresponding actions.
-    It exits with the code returned by `execute_command`.
-    If no command is provided, it defaults to loading data from a sample CSV file.
+    It exits with the code returned by `execute_commands`.
+    If no command is provided, it defaults to loading data and visualizing it.
     """
-    working_folder = os.getcwd()
-    # gitignore_path = '.gitignore'
-    # ignore_patterns = parse_gitignore(gitignore_path)
-
-    # print(f"{working_folder}/")
-    # print_directory_structure(working_folder, ignore_patterns)
-
     if len(sys.argv) == 1:
         # Default action if no command is provided
-        sys.argv.extend(['load_data', 'data/raw/sample.csv'])
+        sys.argv.append('load_data=data\\raw\\sample.csv')
+        sys.argv.append('visualize=table_viewer')
 
     args = parse_arguments()
-    exit_code = execute_command(args)
+    exit_code = execute_commands(args)
     sys.exit(exit_code)
 
 if __name__ == '__main__':

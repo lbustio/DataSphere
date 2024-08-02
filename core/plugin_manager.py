@@ -7,7 +7,7 @@ Version: 1.0
 Email: lbustio@gmail.com
 """
 
-from utils.logging_config import logger
+from core.logging_config import logger
 import importlib.util
 
 class PluginManager:
@@ -48,8 +48,8 @@ class PluginManager:
                 raise ModuleNotFoundError(f"Module '{module_path}' not found.")
 
             # Get the file location of the module (for debugging)
-            file_location = spec.origin if spec.origin else f"Unknown location for plugin {module_path}"
-            logger.info(f"Plugin {plugin_name} located at: {file_location}")
+            file_location = spec.origin if spec.origin else f"Unknown location for plugin '{module_path}'"
+            logger.info(f"Plugin {plugin_name} located at: '{file_location}'")
 
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)

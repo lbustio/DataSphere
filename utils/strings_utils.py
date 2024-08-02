@@ -22,5 +22,6 @@ def get_file_extension(file_path):
         str: The file extension (without the leading dot), or an empty string if the file has no extension.
     """
 
+    # TODO: Validar el path que esta ok
     _, file_extension = os.path.splitext(file_path)
     return file_extension.strip('.')
