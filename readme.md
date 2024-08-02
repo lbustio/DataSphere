@@ -68,7 +68,9 @@ python datasphere_cli.py save=results.txt
 
 ## Plugin System
 
-The DataSphere CLI uses a plugin-based architecture to allow for flexible and extensible data processing.
+The DataSphere CLI utilizes a plugin-based architecture, enabling flexible and extensible data processing. The following image illustrates the proposed class hierarchy:
+
+![Class hierarchy](res/class_diagram.png)
 
 ### BasePlugin
 
