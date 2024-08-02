@@ -1,3 +1,16 @@
+"""
+Module: utils.terminal_colors
+
+Author: Lázaro Bustio Martínez
+Date: 2024-08-01
+Version: 1.0
+Email: lbustio@gmail.com
+
+Description:
+This module defines color codes for terminal output and associates them with different log levels. It allows for color-coded terminal messages to enhance readability and distinguish between different types of log messages.
+
+"""
+
 # Define color codes for terminal output
 RESET = "\033[0m"       # Reset color to default
 BLACK = "\033[30m"     # Black color code
@@ -18,3 +31,4 @@ LOG_COLORS = {
     "ERROR": RED,
     "CRITICAL": MAGENTA,
 }
+
