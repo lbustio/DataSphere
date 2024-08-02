@@ -44,7 +44,7 @@ def parse_arguments():
     for command in command_list:
         if '=' in command:
             cmd, value = command.split('=', 1)
-            parsed_commands[cmd.lower()] = value.lower()  # Convert command and value to lowercase
+            parsed_commands[cmd.lower()] = value
 
     return parsed_commands
 
@@ -61,7 +61,7 @@ def execute_commands(commands):
     try:
         # Load data command
         if 'load_data' in commands:
-            path = commands['load_data']
+            path = commands['load_data'].lower()
             if not validate_file_path(path):
                 logger.error(f"File path '{path}' is invalid.")
                 return 1
@@ -70,6 +70,10 @@ def execute_commands(commands):
             plugin_manager.load_plugin('data_io', plugin_name)
             plugin = plugin_manager.get_plugin(plugin_name)
             if plugin:
+                if file_extension == 'xlsx':
+                    sheet_name = commands.get('sheet_name')  # Get the sheet name if provided
+                    # Set configuration for the plugin
+                    plugin._config['sheet_name'] = sheet_name or 0  # Default to the first sheet
                 state['data'] = plugin.load(path)
                 if state['data'] is None:
                     logger.error("Failed to load data.")
@@ -85,7 +89,7 @@ def execute_commands(commands):
                 logger.error("Data must be loaded before visualization.")
                 return 1
             
-            plugin_name = commands['visualize']
+            plugin_name = commands['visualize'].lower()
             plugin_manager.load_plugin('visualization', plugin_name)
             plugin = plugin_manager.get_plugin(plugin_name)
             if plugin:
@@ -155,7 +159,7 @@ def execute_commands(commands):
             else:
                 logger.info("Showing general help information.")
                 logger.info("Available commands:")
-                logger.info("  load_data=<path>  - Load data from the specified file path.")
+                logger.info("  load_data=<path> [sheet_name=<name>] - Load data from the specified file path. Specify sheet name for XLSX files.")
                 logger.info("  visualize=<plugin> [max_row=<number>] [row_selection=<top|bottom|random|by_class>] [class_column=<column>] [class_value=<value>] - Visualize data using the specified plugin.")
                 logger.info("  analyze=<plugin> - Analyze data using the specified plugin.")
                 logger.info("  save=<path> - Save analysis results to the specified file path.")
