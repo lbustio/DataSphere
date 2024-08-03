@@ -50,3 +50,38 @@ def validate_file_path(path):
 
 # The function now includes validation for the input `path`, 
 # ensuring that only valid paths are processed and preventing potential errors.
+
+
+def verify_folder_structure():
+    """
+    Ensure the working directory has the required folder structure.
+    Create any missing directories and log the process.
+    """
+    # List of required folders for the project structure
+    required_folders = [
+        'core',
+        'data',
+        'data/raw',
+        'data/processed',
+        'logs',
+        'plugins',
+        'plugins/analysis',
+        'plugins/data_io',
+        'plugins/visualization',
+        'res',
+        'scrapes',
+        'trash',
+        'utils'
+    ]
+
+    # Iterate over each required folder and create it if it doesn't exist
+    for folder in required_folders:
+        try:
+            if not os.path.exists(folder):
+                os.makedirs(folder)  # Create the folder and any necessary parent directories
+                logger.info(f"Created missing directory: '{folder}'")  # Log directory creation
+            else:
+                logger.info(f"Directory already exists: '{folder}'")  # Log if directory exists
+        except OSError as e:
+            logger.error(f"Error creating directory '{folder}': {e}")  # Log error if creation fails
+
