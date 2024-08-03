@@ -1,0 +1,36 @@
+como agregar estos parametr
+
+
+load_data=data\raw\iris.csv visualize=table_viewer max_row=7 row_selection=by_class class_column=variety class_value=Virginica
+
+load_data=data\raw\iris.csv visualize=interactive_graph_viewer max_row=7 row_selection=by_class class_column=variety class_value=Virginica
+
+load_data=data\raw\iris.xlsx visualize=table_viewer row_selection=random class_value=Virginica
+
+load_data=data\raw\iris.xlsx visualize=resume_viewer
+
+
+
+python script.py visualize=<plugin> max_row=<number> row_selection=by_class class_column=<column> class_value=<value>
+
+
+
+tenemos que ajustar las politicas para la forma en qeu se visualizarán los datos. Las politicas son estas:
+
+
+- El valor por defecto para max_row es 10. Si los datos tienen menos filas que max_row, entonces se mostraran las filas de los datos. Si no, se mostrarán max_row filas
+
+- Si establece un valor para max_row entonces se mostrarán las max_row filas. Si los datos tuvieran menos filas que max_row, entonces se mostraran las filas que tienen los datos.
+
+- Si row_selection no se establece, entonces el valor por defecto para row_selection será "top".
+
+- Si row_selection se establece, entonces el valor para row_selection será el establecido.
+
+- Si row_selection se establece como "top", entonces se seleccionaran las max_row filas desde el tope. Las políticas para max_row aqui se respetaran.
+
+- Si row_selection se establece como "bottom", entonces se seleccionaran las max_row filas desde el final. Las políticas para max_row aqui se respetaran.
+
+- Si row_selection se establece como "random", entonces se seleccionaran las max_row filas de manera aleatoria. Las políticas para max_row aqui se respetaran.
+
+- Si row_selection se establece como "random", y ademas se establece un valor para class_column, entonces se mostraran max_row filas para cada clase indicada en class_column, de manera que habran cantidad_clases*max_row filas seleccionadas de manera aleatoria. Si hubiesen menos filas en los datos, entonces se seleccionaran la cantidad de filas que hubiese en los datos.
+
