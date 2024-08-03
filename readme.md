@@ -47,23 +47,27 @@ To use the DataSphere CLI, execute the script from the command line with the app
 
 ### Command Line Arguments
 
-The CLI accepts commands in the format `command=value`. Here’s a quick overview of available commands:
+The CLI accepts commands in the format `command=value`.  If multiple commands are required, each `command=value` pair should be separated by a space. Here’s a quick overview of available commands:
 
 - `load_data=<path> [sheet_name=<name>]`: Load data from the specified file path. Optionally specify the sheet name for XLSX files.
 - `visualize=<plugin> [max_row=<number>] [row_selection=<top|bottom|random|by_class>] [class_column=<column>] [class_value=<value>]`: Visualize data using the specified plugin.
-- `analyze=<plugin>`: Analyze data using the specified plugin.
-- `save=<path>`: Save analysis results to the specified file path.
-- `help [command]`: Show help information for a specific command or general help.
+- `analyze=<plugin>`: Analyze data using the specified plugin (**Under construction**).
+- `save=<path>`: Save analysis results to the specified file path (**Under construction**).
+- `help [command]`: Show help information for a specific command or general help (**Under construction**).
 
 ### Example
 
 Some usage examples are:
 
 ```bash
-python datasphere_cli.py load_data=data.xlsx sheet_name=Sheet1
-python datasphere_cli.py visualize=histogram max_row=50 row_selection=top class_column=Category
-python datasphere_cli.py analyze=summary_statistics
-python datasphere_cli.py save=results.txt
+# Command to read a CSV file from the 'data\raw' directory
+python3 main.py load_data=data\raw\iris.csv
+
+# Command to read a CSV file from the 'data\raw' directory and display the data in a table view
+python3 main.py load_data=data\raw\iris.csv visualize=table_viewer
+
+# Command to read the first sheet of an XLSX file from the 'data\raw' directory and visualize it using an interactive graph
+python3 main.py load_data=data\raw\iris.xlsx visualize=interactive_graph_viewer sheet_name=1
 ```
 
 ## Plugin System
