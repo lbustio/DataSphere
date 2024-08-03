@@ -83,17 +83,20 @@ class table_viewer(VisualizationPlugin):
                     logger.error(f"Unknown row_selection method: '{row_selection}'. Defaulting to 'Top'.")
                     selected_data = dataframe.head(max_rows)
             
-            # Create the interactive table using Plotly
+            # Create the interactive table using Plotly with enhanced colors
             fig = go.Figure(data=[go.Table(
                 header=dict(values=list(selected_data.columns),
-                            fill_color='paleturquoise',
-                            align='left'),
+                            fill_color='royalblue',
+                            align='center',
+                            font=dict(color='white', size=12)),
                 cells=dict(values=[selected_data[col] for col in selected_data.columns],
-                           fill_color='lavender',
-                           align='left'))
-            ])
+                           fill_color=[['lavender', 'lightyellow'] * (len(selected_data) // 2) + ['lavender'] * (len(selected_data) % 2)],
+                           align='left',
+                           font=dict(color='black', size=11))
+            )])
 
-            fig.update_layout(title="Interactive DataFrame Viewer")
+            fig.update_layout(title="Interactive DataFrame Viewer", title_font=dict(size=20, family='Arial'))
+
             fig.show()
 
             logger.info("DataFrame visualized successfully.")

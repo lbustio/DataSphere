@@ -57,21 +57,24 @@ def verify_folder_structure():
     Ensure the working directory has the required folder structure.
     Create any missing directories and log the process.
     """
+    
     # List of required folders for the project structure
     required_folders = [
-        'core',
-        'data',
-        'data/raw',
-        'data/processed',
-        'logs',
-        'plugins',
-        'plugins/analysis',
-        'plugins/data_io',
-        'plugins/visualization',
-        'res',
-        'scrapes',
-        'trash',
-        'utils'
+        'core',                     # Core functionality and main logic of the application. 
+        'data',                     # Folder containing all data files used in the project. 
+        'data/raw',                 # Raw, unprocessed data files. 
+        'data/processed',           # Data that has been cleaned or transformed for analysis. 
+        'results',                  # Folder to store the results of analyses, model outputs, or other computations. 
+        'results/visualization',    # Subfolder for storing visualizations generated from results. 
+        'logs',                     # Logs for tracking application events, errors, and debugging information. 
+        'plugins',                  # Folder for plugins or extensions that add functionality to the application. 
+        'plugins/analysis',         # Plugins related to data analysis tasks. 
+        'plugins/data_io',          # Plugins for data input/output operations. 
+        'plugins/visualization',    # Plugins for creating visualizations of data. 
+        'res',                      # Resource folder for static files like images, CSS, or HTML templates. 
+        'scrapes',                  # Folder for storing data collected from web scraping activities. 
+        'trash',                    # Folder for temporarily storing files marked for deletion. 
+        'utils'                     # Utility functions and helper modules used across the project. 
     ]
 
     # Iterate over each required folder and create it if it doesn't exist

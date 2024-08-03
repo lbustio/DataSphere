@@ -58,6 +58,11 @@ class ColoredFormatter(logging.Formatter):
             levelname_colored = level_color + levelname + reset
             message_colored = WHITE + message + reset
 
+            # Add file name and line number only for errors
+            if record.levelno >= logging.ERROR:
+                file_info = f"{record.filename}:{record.lineno}"
+                return f"{timestamp_colored} - {levelname_colored} - {message_colored} - {MAGENTA}{file_info}{reset}"
+
             return f"{timestamp_colored} - {levelname_colored} - {message_colored}"
         except IndexError:
             # Fallback format if splitting fails
